@@ -25,6 +25,9 @@ declare module '@ioc:Adonis/Core/Event' {
   | an instance of the the UserModel only.
   |
   */
+  import User from "App/Models/User";
+
   interface EventsList {
+    'new:user': User
   }
 }

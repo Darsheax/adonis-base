@@ -5,6 +5,7 @@ import {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
 export default class PostsController {
 
   public async index(){
+    //Event.emit('new:user', { id: 1 })
     return [
       {
         id: 1,
