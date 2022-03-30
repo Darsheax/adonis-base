@@ -28,6 +28,6 @@ declare module '@ioc:Adonis/Core/Event' {
   import User from "App/Models/User";
 
   interface EventsList {
-    'new:user': User
+    'new:user': any
   }
 }

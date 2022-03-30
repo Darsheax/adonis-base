@@ -1,11 +1,11 @@
 // import type { HttpContextContract } from '@ioc:Adonis/Core/HttpContext'
 
-import {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
+import Event from "@ioc:Adonis/Core/Event";
 
 export default class PostsController {
 
   public async index(){
-    //Event.emit('new:user', { id: 1 })
+    Event.emit('new:user', { id: 1 })
     return [
       {
         id: 1,
@@ -18,7 +18,7 @@ export default class PostsController {
     ]
   }
 
-  public async admin(ctx: HttpContextContract){
+  public async admin(){
     return [
       {
         message: 'bienvenu ADMIN'
