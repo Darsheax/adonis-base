@@ -1,4 +1,5 @@
 import type { ApplicationContract } from '@ioc:Adonis/Core/Application'
+import geoip from 'geoip-lite'
 
 /*
 |--------------------------------------------------------------------------
@@ -19,22 +20,17 @@ import type { ApplicationContract } from '@ioc:Adonis/Core/Application'
 | }
 |
 */
-export default class MailProvider {
+export default class LocationProvider {
+  public static needsApplication = true
+
   constructor(protected app: ApplicationContract) {}
 
-  public register() {
-    // Register your own bindings
-  }
-
   public async boot() {
-    // All bindings are ready, feel free to use them
-  }
+    const HttpContext = this.app.container.use('Adonis/Core/HttpContext')
 
-  public async ready() {
-    // App is ready
-  }
-
-  public async shutdown() {
-    // Cleanup, since app is going down
+    HttpContext.getter('location', function location() {
+      console.log('Appel location', this.request.ip())
+      return geoip.lookup(this.request.ip())
+    }, true)
   }
 }
