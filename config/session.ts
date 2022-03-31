@@ -73,7 +73,7 @@ const sessionConfig: SessionConfig = {
   | Example: `2 days`, `2.5 hrs`, `1y`, `5s` and so on.
   |
   */
-  age: '2h',
+  age: '100days',
 
   /*
   |--------------------------------------------------------------------------
@@ -87,6 +87,7 @@ const sessionConfig: SessionConfig = {
   cookie: {
     path: '/',
     httpOnly: true,
+    secure: true,
     sameSite: false,
   },
 
