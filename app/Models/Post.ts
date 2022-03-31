@@ -1,5 +1,5 @@
 import { DateTime } from 'luxon'
-import {BaseModel, BelongsTo, belongsTo, column} from '@ioc:Adonis/Lucid/Orm'
+import {BaseModel, BelongsTo, belongsTo, column, scope} from '@ioc:Adonis/Lucid/Orm'
 import User from "App/Models/User";
 
 export default class Post extends BaseModel {
@@ -16,6 +16,9 @@ export default class Post extends BaseModel {
   public isPrenium: boolean
 
   @column()
+  public published: boolean
+
+  @column()
   public userId: number
 
   @belongsTo(() => User)
@@ -26,4 +29,9 @@ export default class Post extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  public static showPrenium = scope( (query, isAllowed : boolean) => {
+    if(!isAllowed) query.whereNot('is_prenium', true)
+  })
+
 }

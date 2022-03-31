@@ -9,6 +9,7 @@ export const PostFactory = Factory
       title: faker.lorem.sentence(),
       content: faker.lorem.paragraphs(4),
       isPrenium: faker.datatype.boolean(),
+      published: faker.datatype.boolean(),
     }
   })
   .build()

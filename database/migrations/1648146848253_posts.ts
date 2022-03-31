@@ -16,6 +16,7 @@ export default class Posts extends BaseSchema {
       table.string('title').notNullable()
       table.text('content', 'longtext').notNullable()
       table.boolean('is_prenium').defaultTo(false)
+      table.boolean('published').defaultTo(false)
 
       /**
        * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL

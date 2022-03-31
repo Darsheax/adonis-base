@@ -14,7 +14,7 @@ export default class PostSeeder extends BaseSeeder {
       role: Role.ADMIN,
     })
 
-    await UserFactory.with('posts', 3).merge([{role: Role.USER}, {role: Role.PRENIUM}, {role: Role.ADMIN}]).createMany(3)
+    await UserFactory.with('posts', 100).merge([{role: Role.USER}, {role: Role.PRENIUM}, {role: Role.ADMIN}]).createMany(3)
 
   }
 }
