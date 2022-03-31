@@ -20,6 +20,7 @@ import geoip from 'geoip-lite'
 | }
 |
 */
+
 export default class LocationProvider {
   public static needsApplication = true
 
