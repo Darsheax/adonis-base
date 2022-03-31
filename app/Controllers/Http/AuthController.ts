@@ -17,7 +17,7 @@ export default class AuthController {
     const {email, password} = await request.validate(LoginUserValidator)
 
     try {
-      await auth.use('web').attempt(email, password)
+      await auth.use('web').attempt(email, password, true)
     } catch {
       return response.badRequest('Invalid credentials')
     }
