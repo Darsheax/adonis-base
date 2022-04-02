@@ -3,15 +3,14 @@
 import {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
 import Post from "App/Models/Post";
 import PostValidator from "App/Validators/PostValidator";
+import {filter} from "App/Helper";
 
 export default class PostsController {
 
   public async index({bouncer} : HttpContextContract) {
     const posts = await Post.all()
 
-    return await Promise
-      .all(posts.map(async post => await bouncer.with('PostPolicy').allows('viewPost', post)))
-      .then(array => posts.filter((_, i) => array[i]))
+    return filter(posts, async post => await bouncer.with('PostPolicy').allows('viewPost', post))
   }
 
   public async destroy({bouncer, params} : HttpContextContract) {
