@@ -19,30 +19,22 @@ import type {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
 
 export default class ExceptionHandler extends HttpExceptionHandler {
 
-  public timestamp?: number
-
-  protected statusPages = {
-    '404': 'errors/not-found',
-    '500..599': 'errors/server-error',
-  }
+  public timestamp?: number = Date.now()
 
   constructor () {
     super(Logger)
-    this.timestamp = Date.now()
+  }
+
+  json(error: any){
+    return{
+      timestamp: this.timestamp,
+      code: error.code,
+      message: error.message
+    }
   }
 
   public async handle(error: any, ctx: HttpContextContract) {
-    /**
-     * Self handle the validation exception
-     */
-    if (error.code === 'E_VALIDATION_FAILURE') {
-      return ctx.response.status(422).send(error.messages)
-    }
-
-    /**
-     * Forward rest of the exceptions to the parent class
-     */
-    return super.handle(error, ctx)
+    return ctx.response.status(error.status).send(this.json(error))
   }
 
 }
