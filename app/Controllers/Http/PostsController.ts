@@ -9,7 +9,6 @@ export default class PostsController {
 
   public async index({bouncer} : HttpContextContract) {
     const posts = await Post.all()
-
     return filter(posts, async post => await bouncer.with('PostPolicy').allows('viewPost', post))
   }
 
@@ -27,6 +26,8 @@ export default class PostsController {
 
   public async show({params, bouncer}: HttpContextContract) {
     const post = await Post.findOrFail(params.id)
+    await post.load('user')
+
     await bouncer.with('PostPolicy').authorize('viewPost', post)
     return post
   }
