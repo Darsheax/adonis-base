@@ -36,7 +36,7 @@ Route.group(() => {
 Route.group(() => {
 
   Route.get('/posts', 'PostsController.index')
-  Route.get('/posts/delete', 'PostsController.delete')
+  Route.delete('/posts/:id', 'PostsController.delete')
 
 }).middleware('auth')
 

@@ -2,7 +2,6 @@
 
 import {HttpContextContract} from "@ioc:Adonis/Core/HttpContext";
 import Post from "App/Models/Post";
-import NotFoundException from "App/Exceptions/Types/NotFoundException";
 
 export default class PostsController {
 
@@ -24,16 +23,11 @@ export default class PostsController {
     ]
   }
 
-  public async delete({bouncer, params, response} : HttpContextContract) {
+  public async delete({bouncer, params} : HttpContextContract) {
 
-    try {
-      const post = await Post.findOrFail(56411)
-      return {success: true, e: post}
-
-    }catch {
-      throw new NotFoundException('You are not authorized')
-
-    }
+    const post = await Post.findOrFail(params.id)
+    await bouncer.with('PostPolicy').authorize('deletePost', post)
+    await post.delete()
 
   }
 

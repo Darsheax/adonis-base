@@ -21,4 +21,11 @@ export default class PostPolicy extends BasePolicy {
     return true
   }
 
+  public async deletePost(user: User, post: Post){
+
+    if(user.id !== post.userId) return Bouncer.deny("You can't delete this post", 403)
+
+    return true
+  }
+
 }
