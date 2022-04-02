@@ -35,8 +35,7 @@ Route.group(() => {
 
 Route.group(() => {
 
-  Route.get('/posts', 'PostsController.index')
-  Route.delete('/posts/:id', 'PostsController.delete')
+  Route.resource('posts', 'PostsController').apiOnly()
 
-}).middleware('auth')
+}).middleware('silentAuth')
 

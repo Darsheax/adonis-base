@@ -13,10 +13,10 @@ export default class Post extends BaseModel {
   public content: string
 
   @column()
-  public isPrenium: boolean
+  public isPrenium: boolean = false
 
   @column()
-  public published: boolean
+  public published: boolean = false
 
   @column()
   public userId: number

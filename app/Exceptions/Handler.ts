@@ -35,6 +35,7 @@ export default class ExceptionHandler extends HttpExceptionHandler {
 
   public async handle(error: any, ctx: HttpContextContract) {
     return ctx.response.status(error.status).send(this.json(error))
+    //return super.handle(error, ctx)
   }
 
 }
