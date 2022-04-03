@@ -29,7 +29,8 @@ export default class ExceptionHandler extends HttpExceptionHandler {
     return{
       timestamp: this.timestamp,
       code: error.code,
-      message: error.message
+      message: error.message,
+      ...error.messages
     }
   }
 
