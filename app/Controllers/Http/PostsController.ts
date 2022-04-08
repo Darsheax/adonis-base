@@ -8,8 +8,15 @@ import {filter} from "App/Helper";
 export default class PostsController {
 
   public async index({bouncer} : HttpContextContract) {
-    const posts = await Post.all()
-    return filter(posts, async post => await bouncer.with('PostPolicy').allows('viewPost', post))
+    const posts = await new Promise(resolve => setTimeout(resolve, 2000)).then(async () => {
+      const posts = await Post.all()
+      return filter(posts, async post => await bouncer.with('PostPolicy').allows('viewPost', post))
+    })
+
+    console.log(posts)
+    console.log("----------------")
+
+    return posts
   }
 
   public async destroy({bouncer, params} : HttpContextContract) {
