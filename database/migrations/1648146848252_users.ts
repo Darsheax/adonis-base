@@ -14,6 +14,9 @@ export default class UsersSchema extends BaseSchema {
       table.integer('role').notNullable().defaultTo(Role.USER)
 
       table.string('remember_me_token').nullable()
+
+      table.string('oauth').nullable()
+
       /**
        * Uses timestampz for PostgreSQL and DATETIME2 for MSSQL
        */

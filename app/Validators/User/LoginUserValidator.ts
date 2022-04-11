@@ -10,7 +10,7 @@ export default class LoginUserValidator {
   public schema = schema.create({
     email: schema.string({}, [
       rules.email({
-        sanitize: true,
+        sanitize: false,
       }),
     ]),
     password: schema.string({})

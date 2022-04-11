@@ -5,9 +5,10 @@ export default class RegisterUserValidator {
   constructor(protected ctx: HttpContextContract) {}
 
   public schema = schema.create({
+    name: schema.string(),
     email: schema.string({}, [
       rules.email({
-        sanitize: true,
+        sanitize: false,
       }),
       rules.unique({ table: 'users', column: 'email'})
     ]),

@@ -31,6 +31,8 @@ Route.group(() => {
   Route.post('/remember', 'AuthController.remember').as('remember')
   Route.post('/logout', 'AuthController.logout').as('logout')
   Route.post('/register', 'AuthController.register').as('register')
+  Route.get('/google/redirect', 'AuthController.social')
+  Route.get('/google/callback', 'AuthController.callback')
 
 }).prefix("auth")
 

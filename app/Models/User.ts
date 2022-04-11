@@ -1,6 +1,6 @@
-import { DateTime } from 'luxon'
+import {DateTime} from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import {column, beforeSave, BaseModel, hasMany, HasMany} from '@ioc:Adonis/Lucid/Orm'
+import {BaseModel, beforeSave, column, hasMany, HasMany} from '@ioc:Adonis/Lucid/Orm'
 import Post from "App/Models/Post";
 import Role from "Contracts/roles";
 
@@ -21,10 +21,13 @@ export default class User extends BaseModel {
   public posts: HasMany<typeof Post>
 
   @column()
-  public role: Role
+  public role: Role = Role.USER
 
   @column({serializeAs : null})
   public rememberMeToken?: string
+
+  @column({serializeAs: null})
+  public oauth: string | null
 
   @column.dateTime({ autoCreate: true, serializeAs : null })
   public createdAt: DateTime

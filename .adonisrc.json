@@ -34,7 +34,8 @@
     "@adonisjs/auth",
     "@adonisjs/session",
     "./providers/LocationProvider",
-    "@adonisjs/bouncer"
+    "@adonisjs/bouncer",
+    "@adonisjs/ally"
   ],
   "aceProviders": [
     "@adonisjs/repl"
