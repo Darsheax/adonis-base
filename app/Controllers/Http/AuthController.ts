@@ -13,20 +13,19 @@ export default class AuthController {
     await User.create(await request.validate(RegisterUserValidator))
   }
 
-  public async login({auth, request, response}: HttpContextContract) {
-    const {email, password} = await request.validate(LoginUserValidator)
+  public async login({auth, request}: HttpContextContract) {
+    const {email: mail, password} = await request.validate(LoginUserValidator)
 
-    try {
-      await auth.use('web').attempt(email, password, true)
-    } catch {
-      return response.badRequest('Invalid credentials')
-    }
-
+    return await auth.use('web').attempt(mail, password, true)
   }
 
   public async logout({auth}: HttpContextContract){
     await auth.use('web').logout()
     //response.redirect('login')
+  }
+
+  public async remember({auth} : HttpContextContract){
+    return await auth.use('web').authenticate()
   }
 
 }

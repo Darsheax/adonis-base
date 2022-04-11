@@ -5,7 +5,7 @@ import Post from "App/Models/Post";
 import Role from "Contracts/roles";
 
 export default class User extends BaseModel {
-  @column({ isPrimary: true })
+  @column({ isPrimary: true, serializeAs : null })
   public id: number
 
   @column()
@@ -23,13 +23,13 @@ export default class User extends BaseModel {
   @column()
   public role: Role
 
-  @column()
+  @column({serializeAs : null})
   public rememberMeToken?: string
 
-  @column.dateTime({ autoCreate: true })
+  @column.dateTime({ autoCreate: true, serializeAs : null })
   public createdAt: DateTime
 
-  @column.dateTime({ autoCreate: true, autoUpdate: true })
+  @column.dateTime({ autoCreate: true, autoUpdate: true, serializeAs : null })
   public updatedAt: DateTime
 
   @beforeSave()

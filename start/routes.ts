@@ -27,9 +27,10 @@ Route.get('/', async () => {
 
 Route.group(() => {
 
-  Route.get('/login', 'AuthController.login').as('login')
-  Route.get('/logout', 'AuthController.logout').as('logout')
-  Route.get('/register', 'AuthController.register').as('register')
+  Route.post('/login', 'AuthController.login').as('login')
+  Route.post('/remember', 'AuthController.remember').as('remember')
+  Route.post('/logout', 'AuthController.logout').as('logout')
+  Route.post('/register', 'AuthController.register').as('register')
 
 }).prefix("auth")
 
